@@ -635,3 +635,25 @@ button {
   color: #e41a2b;
 }
  /*end info section*/
+ .featured-column .text-center .rte-setting { max-width:320px; margin:0 auto 20px; }
+ .categories-item .rte-setting { margin-bottom:20px; }
+ .categories-item .rte-setting { margin-bottom:20px; }
+
+ .page-template .addressFooter { font-size:14px; list-style:none; }
+.page-template #page-content .addressFooter .icon { color:#000 !important; font-size:18px; }
+.page-template .addressFooter li p { padding-left:30px; }
+ .page-template .addressFooter { font-size:14px; list-style:none; }
+.page-template #page-content .addressFooter .icon { color:#000 !important; font-size:18px; }
+.page-template .addressFooter li p { padding-left:30px; }
+.home12-category .footer-5 .addressFooter .icon { margin-top:4px; }
+.home13-auto-parts .footer-2 .site-footer .addressFooter .icon { color:#ffffff !important; }
+.home14-bags .footer-2 .site-footer .addressFooter .icon { color:#ffffff !important; }
+.footer-4 .addressFooter .icon { color:#000 !important; }
+.footer-5 .addressFooter .icon { color:#000 !important; }
+.addressFooter .icon { color:#ffffff !important; float:left; font-size:14px; margin-top:2px; }
+.addressFooter li { padding-bottom:12px; }
+.addressFooter li p { padding-left:25px; }
+
+.top-header .phone-no, .top-header .welcome-msg { display:inline; }
+.top-header .phone-no .anm { vertical-align:middle; }
+.top-header .phone-no a:hover { text-decoration:none; }

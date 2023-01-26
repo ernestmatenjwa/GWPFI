@@ -1,0 +1,151 @@
+<html>
+<head>
+    <title>GWPFI | Signup</title>
+    <style>
+      body{
+    margin: 0;
+    padding: 0;
+    /* background: url(images/Logo_n.jpg);  */
+    background-image: linear-gradient(rgba(0,0,0,0.877), rgba(0, 0, 0, 0.877)), url(images/Logo_n.jpg);
+    /* background-size: cover; */
+    background-repeat: repeat;
+    /* background-position: center; */
+    font-family: sans-serif;
+}
+.login-box{
+    width: 50%;
+    /* height: 420px; */
+    margin: 8% auto;
+    position: relative;
+
+    background: rgba(73, 22, 35, 0.856);
+    color: #fff;
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+.login-box p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.login-box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.login-box input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+.login-box input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #2691d9;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.login-box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: maroon;
+    color: #000;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+.login-box a:hover
+{
+    color: #2691d9;
+}
+.signup_link{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+.signup_link a{
+  color: #2691d9;
+  text-decoration: none;
+}
+.signup_link a:hover{
+  text-decoration: underline;
+}
+
+
+    </style>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="images/avatar.png" class="avatar">
+        <h1>Signup</h1>
+            <form id="form1">
+            <p>Names</p>
+            <input type="text" name="names" id="names" placeholder="Enter Names">
+            <p>Surname</p>
+            <input type="text" name="surname" id="surname" placeholder="Enter Surname">
+            <p>Phone number</p>
+            <input type="text" name="phone" id="phone" placeholder="Enter Phone">
+            <p>Email</p>
+            <input type="text" name="email" id="email" placeholder="Enter email">
+            <p>Church Key</p>
+            <input type="text" name="key" id="key" placeholder="Enter key">
+            <p>Church Position</p>
+            <select id="cover" class="form-control" style="height: 5%; width: 100%;">
+              <option value="" selected="true" disabled="disabled">Select Position</option>
+              <option value="AD">Administrator</option>
+              <option value="BC">Board Commitee</option> 
+              <option value="CC">Church commitee</option>
+              <option value="OT">Other</option>
+            </select>
+            <p>Gender</p>
+            <select id="cover" class="form-control" style="height: 5%; width: 100%;">
+              <option value="" selected="true" disabled="disabled">Select Gender</option> 
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <div style="height: 2%;">
+                
+            </div>
+            <p>Password</p>
+            <input type="password" name="username" placeholder="Enter Password">
+            <p>Verify Password</p>
+            <input type="password" name="username" placeholder="Enter Password">
+              <div style="height: 5%;">
+                
+              </div>
+              <input type="submit" name="submit" value="Login">
+              
+            <div class="signup_link">
+              Already have an account? <a href="login.html">Signin</a>
+            </div> 
+            </form>
+           
+    </div>
+    
+    </body>
+</html>

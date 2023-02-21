@@ -1,6 +1,38 @@
+<?php
+$is_invalid = false;
+
+//detect if form is submitted
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+   //database connection
+   $mysqli = require __DIR__ . "/database.php";
+
+   $sql = sprintf("SELECT * FROM Admin
+                    WHERE ad_Email = '%s'",
+                    $mysqli->real_escape_string($_POST["username"]));
+
+    $result = $mysqli->query($sql);
+
+    $admin = $result->fetch_assoc();
+
+    if ($admin) {
+        if(password_verify($_POST["password"], $admin["ad_Password"])){
+            session_start(); 
+
+            session_regenerate_id();
+
+            $_SESSION["user_id"] = $admin["ad_id"];
+
+            header("Location: admin/dashboard.php");
+            exit;
+        }
+    }
+    $is_invalid = true;
+}
+
+?>
 <html>
 <head>
-    <title> Transparent Login Form Design </title>
+    <title> GWPFI | Login </title>
     <style>
       body{
     margin: 0;
@@ -103,11 +135,15 @@ h1{
     <div class="login-box">
     <img src="images/avatar.png" class="avatar">
         <h1>Login</h1>
-            <form>
+        <?php if ($is_invalid): ?>
+            <em>Invalid login<em>
+        <?php endif; ?>
+            <form method="post">
             <p>Username</p>
-            <input type="text" name="username" placeholder="Enter Username">
+            <input type="text" name="username" id="username" placeholder="Enter Username"
+            value="<?= $_POST["username"] ?? "" ?>">
             <p>Password</p>
-            <input type="password" name="password" placeholder="Enter Password">
+            <input type="password" name="password" id="password" placeholder="Enter Password">
             <div style="padding-bottom: 2%;">
               <a href="#">Forgot Password?</a> 
             </div>
@@ -117,9 +153,7 @@ h1{
             <div class="signup_link">
               Not a member? <a href="signup.html">Signup</a> /<a style="color: red;" href="index.html">Home</a>
             </div> 
-            </form>
-        
-        
+            </form> 
     </div>
     
     </body>

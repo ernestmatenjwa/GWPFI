@@ -90,12 +90,12 @@
                           <div class="container">
                              <div class="banner_main">
                                 <h4 class="banner_taital" style="color: rgb(5, 44, 102); font-weight: bold; font-size: 30px;">All Night Prayer:</h4>
-                                <p style="font-weight: bold; font-size: large; padding-top: 2%; color: maroon;">DATE: 31 January 2023<br>
-                                TIME: 20 : 00 <br>
-                                LOCATION:<br>
-                                Matsulu C, Mashonamini, Next to Battlehem tuckshop<br>
-                                GUEST SPEAKERS:<br>
-                                TITLE INITIALS SURNAME<br>
+                                <p style="font-weight: bold; font-size: large; padding-top: 2%; color: maroon">DATE: 10 February 2023<br>
+                                  TIME: 18 : 00 to 05 : 00 <br>
+                                  LOCATION:<br>
+                                  Matsulu C, Mashonamini, Next to Battlehem tuckshop<br>
+                                  GUEST SPEAKERS:<br>
+                                  PST PHIRI, PST S SIBANDZE, PST MASONDO, PST TSABEDZE & PST NKOSI<br>
                                 <div class="btn_main">
                                    <div class="contact_bt  "><a href="https://wa.me/+27660253468">READ MORE...</a></div>
                                 </div>
@@ -106,12 +106,12 @@
                         <div class="container">
                            <div class="banner_main">
                               <h4 class="banner_taital" style="color: rgb(5, 44, 102); font-weight: bold; font-size: 30px;">All Night Prayer:</h4>
-                              <p style="font-weight: bold; font-size: large; padding-top: 2%; color: black;">DATE: 31 January 2023<br>
-                              TIME: 20 : 00 <br>
+                              <p style="font-weight: bold; font-size: large; padding-top: 2%; color: maroon">DATE: 10 February 2023<br>
+                              TIME: 18 : 00 to 05 : 00 <br>
                               LOCATION:<br>
                               Matsulu C, Mashonamini, Next to Battlehem tuckshop<br>
                               GUEST SPEAKERS:<br>
-                              TITLE INITIALS SURNAME<br>
+                              PST PHIRI, PST S SIBANDZE, PST MASONDO, PST TSABEDZE & PST NKOSI<br>
                               <div class="btn_main">
                                  <div class="contact_bt  "><a href="https://wa.me/+27660253468">READ MORE...</a></div>
                               </div>
@@ -140,23 +140,38 @@
     <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
             <div class="text-center mb-4">
-                  <h2 class="h2" style="color: rgb(5, 44, 102);">Our Annual Events and Announcements</h2>
+                  <h2 class="h2" style="color: rgb(5, 44, 102);">Our Announcements</h2>
                   <hr>
               </div>
            </div>
+           <?php
+           $mysql = require __DIR__ . "/database.php";
+           //Readd all row from database
+           $sql2 = "SELECT * FROM announcement";
+
+           $result2 = $mysqli->query($sql2);
+           
+           if (!$result2) {
+              die("Invalid query: " . $mysqli->error);
+           }
+
+           //read data of each row
+           while($row = $result2->fetch_assoc()){
+            echo "
+           <div class='news_main'> 
+             <div class='news_section_right'>
+               <p class='dolor_text' style='text-align: center; font-size: large;'>$row[an_Announcement]</p>
+               <p style='text-align: center;'><a href='https://wa.me/+27660253468'>READ MORE...</a></p>
+             </div>
+            </div>
+            ";
+          }
+
+       ?>
       </div>
-      <div class="news_main"> 
-        <div class="news_section_right">
-           <h1 class="great_text" style="color: maroon; font-weight: bolder; text-align: center;">ARE YOU A WORSHIP?</h1>
-           <p class="dolor_text" style="text-align: center; font-size: large;">We are looking for people who can sing to add to our team.</p>
-           <p style="text-align: center;"><a href="https://wa.me/+27660253468">READ MORE...</a></p>
-        </div>
      </div>
-     <div class="news_main"> 
-      <div class="news_section_right">
-         <h1 class="great_text" style="color: maroon; font-weight: bolder; text-align: center;">ALL NIGHT PRAYER</h1>
-         <p class="dolor_text" style="text-align: center; font-size: large;">We have an all night prayer Every month end. worship, prayer, prophecy, healing and more...</p>
-      </div>
+    
+     
    </div>   
   </div>
  </section>

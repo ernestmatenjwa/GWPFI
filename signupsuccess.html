@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Success message</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesheet" href="css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <style>
+        .popup{
+          width: 400px;
+          background: #fff;
+          border-radius: 6px;
+          position: absolute;
+          top: 0%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0.1);
+          text-align: center;
+          padding: 0 30px 30px;
+          color: #333;
+          visibility: hidden;
+          transition: transform 0.4s, top 0.4s;
+          visibility: visible;
+          top: 50%;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        .open-popup{
+          visibility: visible;
+          top: 50%;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        .popup img{
+          width: 100px;
+          margin-top: -50px;
+          border-radius: 50%;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .popup h2{
+          font-size: 38px;
+          font-weight: 500;
+          margin: 30px 0 10px;
+        }
+        .popup button{
+          width: 100%;
+          margin-top: 50px;
+          padding: 10px 0;
+          
+        }
+        .btn:hover {
+           background-color: #800000;
+        }
+    </style>
+   </head>
+   <body>
+      <!-- success section start -->
+        <div class="popup" id="popup" style="border-width: 2px;
+                                              border-style: solid;
+                                              border-color: #800000;">
+          <img src="images/success.png" alt="">
+          <h2>Thank You!</h2>
+          <p id="success_msg2" style="color: grey; font-weight: bold;">You have successfully signup, click 'OK' to login.</p>
+          <button class="btn" onclick="window.location.href='login.php'" style="border-width: 2px;
+          border-style: solid;
+          border-color: #800000;">OK</button>
+       </div>
+      <!-- success section end -->
+   
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js">
+        
+
+
+      </script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+
+      <!-- universal -->
+      <script src="universal.js"></script>
+      <!-- javascript --> 
+      <script src="js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   </body>
+</html>

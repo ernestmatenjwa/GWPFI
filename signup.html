@@ -1,7 +1,15 @@
 <html>
 <head>
-    <title>GWPFI | Signup</title>
-    <style>
+  <meta charset="utf-8">
+  <title>GWPFI | Signup</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="description" content="Christian Church" />
+  <meta name="keywords" content="Sunday service, Home cell" />
+  <meta name="author" content="Ernest Matenjwa" />
+    
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    
+    <style>  
       body{
     margin: 0;
     padding: 0;
@@ -103,49 +111,69 @@ h1{
     <div class="login-box">
     <img src="images/avatar.png" class="avatar">
         <h1>Signup</h1>
-            <form id="form1">
-            <p>Names</p>
-            <input type="text" name="names" id="names" placeholder="Enter Names">
-            <p>Surname</p>
-            <input type="text" name="surname" id="surname" placeholder="Enter Surname">
-            <p>Phone number</p>
-            <input type="text" name="phone" id="phone" placeholder="Enter Phone">
-            <p>Email</p>
-            <input type="text" name="email" id="email" placeholder="Enter email">
-            <p>Church Key</p>
-            <input type="text" name="key" id="key" placeholder="Enter key">
-            <p>Church Position</p>
-            <select id="cover" class="form-control" style="height: 5%; width: 100%;">
-              <option value="" selected="true" disabled="disabled">Select Position</option>
-              <option value="AD">Administrator</option>
-              <option value="BC">Board Commitee</option> 
-              <option value="CC">Church commitee</option>
-              <option value="OT">Other</option>
-            </select>
-            <p>Gender</p>
-            <select id="cover" class="form-control" style="height: 5%; width: 100%;">
+            <form id="form1" action="signup.php" method="post" novalidate>
+              <div>
+                <label for="names">Names</p>
+                <input type="text" name="names" id="names" placeholder="Enter Names">
+              </div>
+            <div>
+              <label for="surname">Surname</label>
+              <input type="text" name="surname" id="surname" placeholder="Enter Surname">
+            </div>
+            <div>
+              <label for="phone">Phone number</label>
+              <input type="text" name="phone" id="phone" placeholder="Enter Phone">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" placeholder="Enter email">
+            </div>
+            <div>
+              <label for="key">Church Key</label>
+              <input type="text" name="key" id="key" placeholder="Enter key">
+            </div>
+            <div>
+              <label for="position">Church Position</label>
+              <select id="position" name="position" class="form-control" style="height: 5%; width: 100%;">
+                <option value="" selected="true" disabled="disabled" >Select Position</option>
+                <option value="ADM">Administrator</option>
+                <option value="BCM">Board Commitee</option> 
+                <option value="CCM">Church commitee</option>
+                <option value="OTH">Other</option>
+              </select>
+            </div>
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" class="form-control" style="height: 5%; width: 100%;">
               <option value="" selected="true" disabled="disabled">Select Gender</option> 
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
-            <div style="height: 2%;">
+          </div>
+            <!-- <div style="height: 2%;">
                 
+            </div> -->
+            <div>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" placeholder="Enter Password">
             </div>
-            <p>Password</p>
-            <input type="password" name="username" placeholder="Enter Password">
-            <p>Verify Password</p>
-            <input type="password" name="username" placeholder="Enter Password">
+            <div>
+              <label for="password2">Verify Password</p>
+              <input type="password" name="password2" id="password2" placeholder="Re-enter Password">
+            </div>
+            
               <div style="height: 5%;">
                 
               </div>
-              <input type="submit" name="submit" value="Login">
+              <input type="submit" name="btnsubmit" value="Signup">
               
             <div class="signup_link">
-              Already have an account? <a href="login.html">Signin</a>
+              Already have an account? <a href="login.php">Signin</a>
             </div> 
             </form>
            
     </div>
-    
+    <!-- scripts -->
+    <script src="validate/validate.js" defer></script>
     </body>
 </html>

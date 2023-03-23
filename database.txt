@@ -70,7 +70,7 @@ CREATE TABLE member_pledge (
 CREATE TABLE message (
     ms_id INT(30) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     ms_message VARCHAR(255) NOT NULL,
-    ms_type INT(255) NOT NULL,
+    ms_type VARCHAR(255) NOT NULL,
     ms_seen VARCHAR(255) NOT NULL,
     ms_sender_phone VARCHAR(255) NOT NULL,
     ms_sender_email VARCHAR(255) NOT NULL,

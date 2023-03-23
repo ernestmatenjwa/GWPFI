@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
             $_SESSION["user_id"] = $admin["ad_id"];
 
-            header("Location: admin/dashboard.php");
+            header("Location: administrator");
             exit;
         }
     }

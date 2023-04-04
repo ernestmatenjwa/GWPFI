@@ -24,7 +24,7 @@ if(isset($_SESSION["user_id"])){
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin portal</title>
+  <title>Admin portal | Announcements</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/iconfonts/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -383,7 +383,7 @@ if(isset($_SESSION["user_id"])){
                 <img src="<?= htmlspecialchars($user["ad_picture"]) ?>" alt="image"/>
               </div>
               <div class="profile-name">
-                <p class="name">
+                <p class="name" style="text-transform: uppercase;">
                 <?= htmlspecialchars($user["ad_Names"] . " " . $user["ad_Surname"]) ?>
                 </p>
                 <p class="designation">
@@ -420,7 +420,7 @@ if(isset($_SESSION["user_id"])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="members.php">
+            <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-tags menu-icon"></i>
               <span class="menu-title">Church Members</span>
             </a>
@@ -445,12 +445,18 @@ if(isset($_SESSION["user_id"])){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/widgets.html">
+              <i class="fa fa-info menu-icon"></i>
+              <span class="menu-title">Church Finances</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-tasks menu-icon"></i>
               <span class="menu-title">Pledges</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="profile.php">
+            <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-users menu-icon"></i>
               <span class="menu-title">Profile</span>
             </a>
@@ -459,29 +465,126 @@ if(isset($_SESSION["user_id"])){
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper" style="background-image: url(images/display.jpeg); background-size: cover;">
-          <div class="container-scroller">
-            <div class="container-fluid page-body-wrapper full-page-wrapper">
-              <div class="content-wrapper d-flex align-items-center auth lock-full-bg">
-                <div class="row w-100">
-                  <div class="mx-auto">
-                    
-                      <form>
-                        <!-- <div class="form-group">
-                          <label for="examplePassword1">Password to unlock</label>
-                          <input type="password" class="form-control text-center" id="examplePassword1" placeholder="Password">
-                        </div> -->
-                        
-                        <h1 style="font-size: 70px;">God Winners Prayer Force Ministry</h1>
-                        <hr style=" border: 7px solid black; border-radius: 5px;"/>
-                        <!-- <div class="mt-3 text-center">
-                          <a href="#" class="auth-link text-white">Sign in using a different account</a>
-                        </div> -->
-                      </form>
-                    
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_anno" data-whatever="@mdo">New announcement</button>
+                  <div class="mt-4">
+                    <div class="accordion accordion-bordered" id="accordion-2" role="tablist">
+                    <?php
+                     $mysql = require __DIR__ . "/database.php";
+                      //Readd all row from database
+                      $sql2 = "SELECT * FROM announcement";
+
+                      $result2 = $mysqli->query($sql2);
+           
+                     if (!$result2) {
+                     die("Invalid query: " . $mysqli->error);
+                    }
+
+           //read data of each row
+           while($row = $result2->fetch_assoc()){
+            echo "
+                      <div class='card'>
+                        <div class='card-header' role='tab' id='heading-4'>
+                          <h6 class='mb-0'>
+                            <a data-toggle='collapse' href='#$row[an_id]' aria-expanded='false' aria-controls='$row[an_id]'>
+                            $row[an_title]
+                            </a>
+                          </h6>
+                        </div>
+                        <div id='$row[an_id]' class='collapse' role='tabpanel' aria-labelledby='heading-4' data-parent='#accordion-2'>
+                          <div class='card-body'>
+                          $row[an_Announcement]
+                          <br/>
+                          <button type='button' class='btn btn-primary' onclick='getAnnDetails($row[an_id])'>Edit</button>
+                          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#remove' data-whatever='$row[an_id]' onclick='remove($row[an_id])' class='btn btn-primary'>Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                      ";
+                    }
+          
+                 ?>                      
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- content-wrapper ends -->
+            </div>
+
+<div class="modal fade" id="create_anno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="">New Announcement</h5>
+        <div id="ad_member_ad"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter title eg Night Prayer">
+          </div>
+          <div class="form-group">
+            <label for="announcement" class="col-form-label">Announcement Details:</label>
+            <textarea class="form-control" id="announcement"  rows="5" placeholder="Enter details.."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" onclick="create_announcement()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateModal" name="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="">Update Announcement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="update_title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="update_title" placeholder="Enter title eg Night Prayer">
+          </div>
+          <div class="form-group">
+            <label for="update_an" class="col-form-label">Announcement Details:</label>
+            <textarea class="form-control" id="update_an"  rows="5" placeholder="Enter details.."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="hiddendata">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" onclick="update_announcement()"  class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                </div>
+              </div>
             </div>
             <!-- page-body-wrapper ends -->
           </div>
@@ -516,10 +619,13 @@ if(isset($_SESSION["user_id"])){
   <script src="js/misc.js"></script>
   <script src="js/settings.js"></script>
   <script src="js/todolist.js"></script>
+  <script src="js/modal.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
   <!-- End custom js for this page-->
+
+  <script src="js/ngco.js"></script>
 </body>
 
 

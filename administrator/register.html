@@ -7,7 +7,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Register</title>
+  <title>Create accont</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/iconfonts/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -18,7 +18,18 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="../images/Logo_n.jpg" />
+  <style>
+    .avatar{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        left: calc(50% - 50px);
+    }
+    
+        </style>  
 </head>
 
 <body >
@@ -26,65 +37,118 @@
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth">
         <div class="row w-100">
-          <div class="col-lg-4 mx-auto">
+          <div class="col-lg-6 mx-auto">
             <div class="auth-form-light text-left p-5">
-              <div class="brand-logo">
-                <img src="images/display.jpeg" alt="logo">
-              </div>
-              <h4>Business Details</h4>
               <!-- <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6> -->
-              <form class="pt-3" method="post" action="register.php">
+              <form class="pt-3" id="reg_form" name="reg_form" method="post" action="register.php">
+              <h4 style="font-weight: bolder; text-align: center; padding: 2%; color: maroon;">Create account</h4>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="BusName" name="BusName" placeholder="Business Name" autocomplete="off" required>
+                  <label>Full Names</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-pen text-primary"></i>
+                      </span>
+                    </div>
+                    <input type="text" id="names" name="names" class="form-control form-control-lg border-left-0" placeholder="Enter names.." autocomplete="off" >
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="slogan" name="slogan" placeholder="Busines Slogan" autocomplete="off" required>
+                  <label>Surname</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-pen text-primary"></i>
+                      </span>
+                    </div>
+                    <input type="text" id="surname" name="surname" placeholder="Enter surname.." autocomplete="off" class="form-control form-control-lg border-left-0" placeholder="Enter slogan..">
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-lg" id="contactno" name="contactno" placeholder="Contact Number" autocomplete="off" minlength="10" maxlength="10" a required>
-                </div>
-                <h4>Personal Details</h4>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="p_names" name="p_names" placeholder="Name and Surname" autocomplete="off" required>
-                </div>
-                <div class="form-group">
-                  <input type="number" class="form-control form-control-lg" id="p_phone" name="p_phone" placeholder="Cell Number" autocomplete="off" minlength="10" maxlength="10" required>
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="p_email" name="p_email" placeholder="Personal Email" autocomplete="off" required>
+                  <label>Phone number</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-pen text-primary"></i>
+                      </span>
+                    </div>
+                    <input type="number" id="phone" name="phone" placeholder="Enter phone no.." autocomplete="off" class="form-control form-control-lg border-left-0" placeholder="Enter slogan..">
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="p_password" name="p_password" placeholder="Password" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                  <label>Email</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="far fa-envelope-open text-primary"></i>
+                      </span>
+                    </div>
+                    <input id="email" name="email" type="email" class="form-control form-control-lg border-left-0" placeholder="Enter Email.." autocomplete="off" required>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="p_passconf" name="p_passconf" autocomplete="off" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                  <label>Church key</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-lock text-primary"></i>
+                      </span>
+                    </div>
+                    <input  id="key" name="key" autocomplete="off" placeholder="Enter Company Key" type="password" class="form-control form-control-lg border-left-0" placeholder="Enter Email..">
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="hint" name="hint" placeholder="Hint" autocomplete="off" required>
-                </div>
-                <div class="form-group">
-                  <select class="form-control form-control-lg" id="accesslevel" name="accesslevel" required>
+                  <label>Work at church</label>
+                  <select class="form-control form-control-lg" id="position" name="position" autocomplete="off">
                     <option selected disabled value="">Select Access level</option>
-                    <option value="Director">Director</option>
-                    <option value="Sales Agent">Sales Agent</option>
-                    <option value="Groups Administrator">Groups Administrator</option>
-                    <option value="Branch Administrator">Branch Administrator</option>
-                    <option value="Office Administrator">Office Administrator</option>
+                    <option value="Chairperson">Chairperson</option>
+                    <option value="Usher">Usher</option>
+                    <option value="Administrator">Administrator</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="campanykey" name="campanykey" autocomplete="off" placeholder="Campany Key" required>
+                  <label>Gender</label>
+                  <select class="form-control form-control-lg" id="gender" name="gender" autocomplete="off">
+                    <option selected disabled value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 </div>
-                <!-- <div class="mb-4">
+                <div class="form-group">
+                  <label>Password</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-lock text-primary"></i>
+                      </span>
+                    </div>
+                    <input type="password" class="form-control form-control-lg border-left-0" id="password" name="password" placeholder="Enter Password.." autocomplete="off">                        
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Verify Password</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-lock text-primary"></i>
+                      </span>
+                    </div>
+                    <input type="password"  class="form-control form-control-lg border-left-0" id="password2" name="password2" placeholder="Enter password.." autocomplete="off" >                        
+                  </div>
+                </div>
+                <div class="mb-4">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
-                      I agree to all Terms & Conditions
+                      I agree to all Terms & Conditions 
                     </label>
+                    <a href="" class="text-primary" style="font-size: xx-small;">View Terms & Conditions</a>
                   </div>
-                </div> -->
+                </div>
+                <div id='ad_member_ad'></div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">REGISTER</button>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   Already have an account? <a href="login.php" class="text-primary">Login</a>
@@ -109,7 +173,11 @@
   <script src="js/misc.js"></script>
   <script src="js/settings.js"></script>
   <script src="js/todolist.js"></script>
+
   <!-- endinject -->
+
+  <script src="js/ngco.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 
 

@@ -383,7 +383,7 @@ if(isset($_SESSION["user_id"])){
                 <img src="<?= htmlspecialchars($user["ad_picture"]) ?>" alt="image"/>
               </div>
               <div class="profile-name">
-                <p class="name">
+                <p class="name" style="text-transform: uppercase;">
                 <?= htmlspecialchars($user["ad_Names"] . " " . $user["ad_Surname"]) ?>
                 </p>
                 <p class="designation">
@@ -420,7 +420,7 @@ if(isset($_SESSION["user_id"])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="members.php">
+            <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-tags menu-icon"></i>
               <span class="menu-title">Church Members</span>
             </a>
@@ -445,12 +445,18 @@ if(isset($_SESSION["user_id"])){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/widgets.html">
+              <i class="fa fa-info menu-icon"></i>
+              <span class="menu-title">Church Finances</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-tasks menu-icon"></i>
               <span class="menu-title">Pledges</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="profile.php">
+            <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-users menu-icon"></i>
               <span class="menu-title">Profile</span>
             </a>
@@ -459,29 +465,63 @@ if(isset($_SESSION["user_id"])){
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper" style="background-image: url(images/display.jpeg); background-size: cover;">
-          <div class="container-scroller">
-            <div class="container-fluid page-body-wrapper full-page-wrapper">
-              <div class="content-wrapper d-flex align-items-center auth lock-full-bg">
-                <div class="row w-100">
-                  <div class="mx-auto">
-                    
-                      <form>
-                        <!-- <div class="form-group">
-                          <label for="examplePassword1">Password to unlock</label>
-                          <input type="password" class="form-control text-center" id="examplePassword1" placeholder="Password">
-                        </div> -->
-                        
-                        <h1 style="font-size: 70px;">God Winners Prayer Force Ministry</h1>
-                        <hr style=" border: 7px solid black; border-radius: 5px;"/>
-                        <!-- <div class="mt-3 text-center">
-                          <a href="#" class="auth-link text-white">Sign in using a different account</a>
-                        </div> -->
-                      </form>
-                    
+        <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Hoverable Table</h4>
+                  <p class="card-description">
+                    Add class <code>.table-hover</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                      <tr>
+                                                   <th>Names</th>
+                                                   <th>Surname</th>
+                                                   <th>Phone no</th>
+                                                   <th>Email</th>
+                                                   <th>Status</th>
+                                                   <th>Work</th>
+                                                   <th>Gender</th>
+                                                   <th>Action</th>
+                                                </tr>
+                      </thead>
+                      <tbody>
+                      <?php
+                                                   //  $mysql = require __DIR__ . "/../database.php";
+                                                   //Readd all row from database
+                                                   $sql2 = "SELECT * FROM ch_Members";
+
+                                                   $result2 = $mysqli->query($sql2);
+                                                   
+                                                   if (!$result2) {
+                                                      die("Invalid query: " . $mysqli->error);
+                                                   }
+
+                                                   //read data of each row
+                                                   while($row = $result2->fetch_assoc()){
+                                                      echo "
+                                                      <tr>
+                                                      <td>$row[m_Names]</td>
+                                                      <td>$row[m_Surname]</td>
+                                                      <td>$row[m_Phone]</td>
+                                                      <td>$row[m_Email]</td>
+                                                      <td>$row[m_Status]</td>
+                                                      <td>$row[m_Position]</td>
+                                                      <td>$row[m_Gender]</td>
+                                                      <td>
+                                                         <a href='profile.php?upd_id=$row[m_id]' class='btn btn-success'>Profile</a>
+                                                      </td>
+                                                   </tr>
+                                                      ";
+                                                   }
+
+                                                ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-              <!-- content-wrapper ends -->
             </div>
             <!-- page-body-wrapper ends -->
           </div>

@@ -43,8 +43,8 @@ $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 $mysqli = require __DIR__ . "/database.php";
 
 //avoid sql injection attack
-$sql = "INSERT INTO Admin (ad_id, ad_Names, ad_Surname, ad_Phone, ad_Email, ad_Church_Key, ad_Position, ad_Gender, ad_Password, _By)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO Admin (ad_id, ad_Names, ad_Surname, ad_Phone, ad_Email, ad_Church_Key, ad_Position, ad_Gender, ad_Password)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
@@ -53,7 +53,7 @@ if ( ! $stmt->prepare($sql)) {
    die("SQL error: " . $mysqli->error);
 };
 
-$stmt->bind_param("ssssssssss",
+$stmt->bind_param("sssssssss",
                    $_POST["email"],
                    $_POST["names"],
                    $_POST["surname"],
@@ -62,8 +62,7 @@ $stmt->bind_param("ssssssssss",
                    $_POST["key"],
                    $_POST["position"],
                    $_POST["gender"],
-                   $password_hash,
-                   $_POST["names"]
+                   $password_hash
                    );
 
 if ($stmt->execute()){

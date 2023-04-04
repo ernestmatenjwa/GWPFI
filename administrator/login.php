@@ -1,73 +1,33 @@
 <?php
+$is_invalid = false;
+$error_message;
+//detect if form is submitted
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+   //database connection
+   $mysqli = require __DIR__ . "/database.php";
 
-session_start(); // Start session management
+   $sql = sprintf("SELECT * FROM Admin
+                    WHERE ad_Email = '%s'",
+                    $mysqli->real_escape_string($_POST["username"]));
 
-// Check if user has already logged in
-// if (isset($_SESSION['user_id'])) {
-//     header("Location: dashboard.php"); // Redirect to dashboard if user is already logged in
-//     exit;
-// }
+    $result = $mysqli->query($sql);
 
-// Check if the form has been submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $admin = $result->fetch_assoc();
 
-    // Get form data
-    $email = $_POST['username'];
-    $password = $_POST['password'];
+    if ($admin) {
+        if(password_verify($_POST["password"], $admin["ad_Password"])){
+            session_start(); 
 
-    // Connect to database
-    $servername = "localhost";
-    $db_username = "mandhagr_websystems_10";
-    $db_password = "websystems_10";
-    $dbname = "mandhagr_websystems_10";
-    $conn = new mysqli($servername, $db_username, $db_password, $dbname);
+            session_regenerate_id();
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+            $_SESSION["user_id"] = $admin["ad_id"];
+            
+            header("Location: admin-portal.php");
+            exit;
+        }
     }
-
-    $query = "SELECT * 
-              FROM accounts 
-              WHERE email = '$email'
-              AND Password = '$password'";
-    $result = $conn->query($query);
-
-    if ($result->num_rows > 0) {
-      $_SESSION['user_id'] = $id;
-      header("Location: admin-portal.php");
-        exit;
-      };
-    // }else{
-    // // Invalid login, show error message
-    // $error_message = "Invalid email or password";
-    // exit;
-    // }
-    //  // Prepare SQL statement
-    //  $stmt = $conn->prepare("SELECT id, email, Password FROM accounts WHERE email = ?");
-    //  $stmt->bind_param("s", $email);
-    //  $stmt->execute();
-    //  $stmt->store_result();
-
-    // // Check if user with given email exists
-    // if ($stmt->num_rows === 1) {
-
-    //     // Get user details
-    //     // $stmt->bind_result($id, $email, $hashed_password);
-    //     // $stmt->fetch();
-    //     $stmt->bind_result($id, $email, $password);
-    //     $stmt->fetch();
-    //     // Verify password
-    //     if (password_verify($password, $hashed_password)) {
-    //         // Password is correct, create session and redirect to dashboard
-    //         $_SESSION['user_id'] = $id;
-    //         header("Location: index-2.html");
-    //         exit;
-    //     }
-    // }
-
-    // Invalid login, show error message
-    $error_message = "Invalid email or password";
+    $error_message = "Username or password invalid!!!";
+    $is_invalid = true;
 }
 
 ?>
@@ -91,7 +51,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- inject:css -->
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="../images/Logo_n.jpg" />
+      <style>
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+    </style>  
 </head>
 
 <body>
@@ -99,35 +70,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth">
         <div class="row w-100">
-          <div class="col-lg-4 mx-auto">
+          <div class="col-lg-5 mx-auto">
             <div class="auth-form-light text-left p-5">
-              <div class="brand-logo">
-                <img src="images/display.jpeg" alt="logo">
-              </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">login to continue.</h6>
-              <form class="pt-3" method = "post">
-                <?php if (isset($error_message)) { ?>
-                  <div style="font-size: x-large; color: #d75151c1; padding: 10px; font-weight:bold;"><?php echo $error_message; ?></div>
+              <img src="images/avatar.png" class="avatar">
+              <h4 style="color: grey; font-weight: bolder; text-align: center; padding: 2%; color: maroon;">L o g i n</h4>
+              <?php if (isset($error_message)) { ?>
+                  <div id="error_msg" style="background: #fe8b8e; padding: 10px; margin-bottom: 20px; text-align: center; font-size: 14px; transition: all 0.5s ease;"><?php echo $error_message; ?></div>
+
+                  <!-- <div style="font-size: x-large; color: #d75151c1; padding: 10px; font-weight:bold;"><?php /*echo $error_message;*/ ?></div> -->
                 <?php } ?>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="username" autocomplete="off" name = "username" placeholder="User Name" required>
+                <form class="pt-3" method = "post">
+            
+            <div class="form-group">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                  <span class="input-group-text bg-transparent border-right-0">
+                    <i class="fa fa-user text-primary"></i>
+                  </span>
                 </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" autocomplete="off" id="password" name = "password" placeholder="Password" required>
+                <input type="email" class="form-control form-control-lg border-left-0" id="username" autocomplete="off" name = "username" placeholder="Enter username eg alex@gmail.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                  <span class="input-group-text bg-transparent border-right-0">
+                    <i class="fa fa-lock text-primary"></i>
+                  </span>
                 </div>
-                <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
-                </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-          
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
-                </div>
-             
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Register</a>
-                </div>
-              </form>
+                <input type="password" class="form-control form-control-lg border-left-0" autocomplete="off" id="password" name = "password" placeholder="Enter Password" required>                        
+              </div>
+            </div>
+            <div class="my-2 d-flex justify-content-between align-items-center">
+              <div class="form-check">
+                <label class="form-check-label text-muted">
+                  <input type="checkbox" class="form-check-input">
+                  Keep me signed in
+                </label>
+              </div>
+              <a href="#" class="auth-link text-black">Forgot password?</a>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
+            </div>
+            <div class="text-center mt-4 font-weight-light">
+              Don't have an account? <a href="register.html" class="text-primary">Create</a>
+            </div>
+          </form>
             </div>
           </div>
         </div>
